@@ -1,0 +1,8 @@
+{
+    "tag_name": "release-4.4.0",
+    "name": "Release 4.4.0",
+    "html_url": "https://github.com/Motion-Project/motion/releases/tag/release-4.4.0",
+    "amd64": "https://github.com/Motion-Project/motion/releases/download/release-4.4.0/focal_motion_4.4.0-1_amd64.deb",
+    "arm64": "https://github.com/Motion-Project/motion/releases/download/release-4.4.0/focal_motion_4.4.0-1_arm64.deb",
+    "arm": "https://github.com/Motion-Project/motion/releases/download/release-4.4.0/focal_motion_4.4.0-1_armhf.deb"
+}
