@@ -20,7 +20,7 @@ if ($null -ne $json) {
     $releasename = $json.name;
     $git_tag = $json.tag_name;
     $htmlurl = $json.html_url;
-    $docker_tag = $git_tag  | Select-String -Pattern "\d+\.\d+.\d+"  | Select-Object -ExpandProperty Matches -First 1 | Select-Object -ExpandProperty Value
+    $docker_tag =  $git_tag  | Select-String -Pattern "\d+\.\d+.\d+"  | Select-Object -ExpandProperty Matches -First 1 | Select-Object -ExpandProperty Value
 
 
     $debfile_amd64 = ""
@@ -48,7 +48,7 @@ if ($null -ne $json) {
         "name"       = $releasename
         "git_tag="   = $git_tag
         "html_url"   = $htmlurl
-        "docker_tag" = $docker_tag        
+        "docker_tag" = "v$docker_tag"        
         "amd64"      = $debfile_amd64 
         "arm64"      = $debfile_arm64 
         "arm"        = $debfile_arm 
