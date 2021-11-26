@@ -1,9 +1,14 @@
-group "default" {
-    targets = ["app"]
-}
+// docker-bake.hcl
+target "docker-metadata-action" {}
 
-target "app" {
-    dockerfile = "Dockerfile"
-    platforms = ["linux/amd64", "linux/arm64", "linux/arm/v7"]
+target "build" {
+  inherits = ["docker-metadata-action"]
+  context = "./"
+  dockerfile = "Dockerfile"
+  platforms = [
+    "linux/amd64",
+    "linux/arm/v7",
+    "linux/arm64"
+  ]
 }
 
