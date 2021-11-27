@@ -11,7 +11,7 @@ set -o pipefail
 #Script parameters
 
 #Debug for this
-verbose=true
+verbose=false
 
 filedata=metadata.json
 
