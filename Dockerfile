@@ -12,7 +12,7 @@ ADD install.sh /store/
 
 # Setup Timezone packages and avoid all interaction. This will be overwritten by the user when selecting TZ in the run command
 RUN export DEBIAN_FRONTEND=noninteractive; \
-    apt-get update  && apt-get install --yes --no-install-recommends  apt-utils  ca-certificates  curl 
+    apt-get update  && apt-get install --yes  apt-utils  ca-certificates  curl 
 
 
 RUN chmod +x /store/install.sh &&  /store/install.sh

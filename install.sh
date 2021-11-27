@@ -164,7 +164,7 @@ install(){
     if [ -e $appfile ];  then
 
         export DEBIAN_FRONTEND=noninteractive;
-        apt install --yes --no-install-recommends   $appfile   || failed=true
+        apt-get install --yes   $appfile   || failed=true
         
         rm -f $appfile 
 
