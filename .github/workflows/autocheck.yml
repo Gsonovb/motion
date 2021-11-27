@@ -1,0 +1,46 @@
+name: Auto Check Release
+
+
+on:
+  schedule:
+    - cron: '36 9 * * *'
+
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'build name'
+        # Default value if no value is explicitly provided
+        default: 'manual'
+        # Input has to be provided for the workflow to run
+        required: false
+
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set git
+        run: |
+          git config --global user.name ${{ secrets.USER_NAME }}
+          git config --global user.email ${{ secrets.USER_EMAIL }}
+
+
+      - name: Run Check Script
+        run: .\auto_check_and_update.ps1 -repository  ${{ github.repository }}
+        shell: pwsh
+      
+      - name: Commit & push changes
+        run: |
+          git push --follow-tags
+
+
