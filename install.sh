@@ -74,7 +74,10 @@ say_verbose() {
 #get_filedata_value tagname
 get_filedata_value() {
     eval $invocation
-    local tag_name="$1" 
+    
+    local tag_start='"'
+    local tag_end='":'
+    local tag_name="${tag_start}$1${tag_end}" 
 
     cat $filedata |  grep "$tag_name" |   sed -E 's/.*"([^"]+)".*/\1/' 
 }
@@ -137,14 +140,14 @@ downloadfile() {
 
     say "Download file"
 
-    download_link="$(get_filedata_value  "$(get_machine_architecture)"  )"
+    download_link="$(get_filedata_value  "$(get_machine_architecture)" )"
     
     say_verbose "Downloading link :$download_link"
 
     downloadcurl $download_link $appfile  || failed=true
 
     if [ "$failed" = true ]; then
-        say_verbose "Download failed: $url";
+        say_verbose "Download failed: $download_link";
         return 1
     fi
     return 0
