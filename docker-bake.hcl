@@ -12,3 +12,6 @@ target "build" {
   ]
 }
 
+group "default" {
+    targets = ["build"]
+}
