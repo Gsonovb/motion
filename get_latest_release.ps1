@@ -46,7 +46,7 @@ if ($null -ne $json) {
 
     $data = @{
         "name"       = $releasename
-        "git_tag="   = $git_tag
+        "git_tag"   = $git_tag
         "html_url"   = $htmlurl
         "docker_tag" = "v$docker_tag"        
         "amd64"      = $debfile_amd64 
@@ -55,12 +55,13 @@ if ($null -ne $json) {
     }
 
   
+   
 
-    $body = ConvertTo-Json -InputObject $data
+    $body = ConvertTo-Json -InputObject  $data|  Sort-Object
     
     Out-File -FilePath $outfile -InputObject $body 
 
-    Write-Host "Done."
+    Write-Host "Update metadata Done."
 }
 else {
     
