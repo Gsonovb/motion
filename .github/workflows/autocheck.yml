@@ -52,7 +52,7 @@ jobs:
           tagname=$(cat metadata.json |grep '"docker_tag"' |   sed -E 's/.*"([^"]+)".*/\1/')
           echo "::set-output name=tag::${tagname}"
 
-  build:
+  buildimage:
     needs: check
     permissions:
       contents: read

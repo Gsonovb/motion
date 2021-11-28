@@ -50,14 +50,16 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.tagname != '' && inputs.tagname == '' }}
         uses: actions/checkout@v2
         with:
-          ref: tags/${{ github.event.inputs.tagname }}
+          fetch-depth: 0
+          ref: ${{ github.event.inputs.tagname }}
 
       - name: Checkout repository for tag
         if: ${{ inputs.tagname != '' }}
         uses: actions/checkout@v2
         with:
-          ref: tags/${{ inputs.tagname }}
-          
+          fetch-depth: 0
+          ref: ${{ inputs.tagname }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       
