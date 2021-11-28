@@ -57,7 +57,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    uses: ${{ github.repository }}/.github/workflows/ci-cd.yml@main
+    uses: Gsonovb/motion/.github/workflows/ci-cd.yml@main
     with:
       tagname: ${{needs.check.outputs.tagname }}
     
