@@ -19,11 +19,14 @@ on:
 
 
 jobs:
-  build:
+  check:
 
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
+    outputs:
+      tagname: ${{ steps.gettag.outputs.tag }}
 
     steps:
       - name: Checkout repository
@@ -43,4 +46,20 @@ jobs:
         run: |
           git push --follow-tags
 
+      - id: gettag
+        name: Get Tag Name
+        run: |
+          tagname=$(cat metadata.json |grep '"docker_tag"' |   sed -E 's/.*"([^"]+)".*/\1/')
+          echo "::set-output name=tag::${tagname}"
 
+  build:
+    needs: check
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/ci-cd.yml@main
+    with:
+      tagname: ${{needs.check.outputs.tagname }}
+    
+
+    

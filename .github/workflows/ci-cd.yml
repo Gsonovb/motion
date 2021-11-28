@@ -2,14 +2,28 @@ name: Docker Image CI-CD
 
 
 on:
-  schedule:
-    - cron: '36 0 * * 0'
+  # schedule:
+  #   - cron: '36 0 * * 0'
+
   push:
     branches: [ main , dev ]
     # Publish semver tags as releases.
     tags: [ 'v*' ]
   # pull_request:
   #   branches: [ main ]
+
+  workflow_dispatch:
+    inputs:
+      tagname:
+        description: 'the git tag for to build image '
+        required: true
+
+  workflow_call:
+    inputs:
+      tagname:
+        description: 'the git tag for to build image '
+        required: true
+        type: string
 
 
 env:
@@ -29,8 +43,21 @@ jobs:
 
     steps:
       - name: Checkout repository
+        if: ${{ github.event_name != 'workflow_dispatch' && github.event.inputs.tagname == '' && inputs.tagname == '' }}
         uses: actions/checkout@v2
 
+      - name: Checkout repository for tag
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.tagname != '' && inputs.tagname == '' }}
+        uses: actions/checkout@v2
+        with:
+          ref: tags/${{ github.event.inputs.tagname }}
+
+      - name: Checkout repository for tag
+        if: ${{ inputs.tagname != '' }}
+        uses: actions/checkout@v2
+        with:
+          ref: tags/${{ inputs.tagname }}
+          
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       
