@@ -17,19 +17,19 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: "ubuntu-18.04"
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build an image from Dockerfile
-        run: |
-          docker build -t ghcr.io/gsonovb/motion:${{ github.sha }} .
+      # - name: Build an image from Dockerfile
+      #   run: |
+      #     docker build -t ghcr.io/gsonovb/motion:${{ github.ref_name }} .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@2a2157eb22c08c9a1fac99263430307b8d1bc7a2
         with:
-          image-ref: 'ghcr.io/gsonovb/motion:${{ github.sha }}'
+          image-ref: 'ghcr.io/gsonovb/motion:${{ github.ref_name }}'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
