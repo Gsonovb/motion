@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  motion:
+    image: ghcr.io/gsonovb/motion:latest
+    container_name: motion
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2.00'
+          memory: 2048M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+    ports:
+      # Use ports defined in the configuration file
+      - 8080:8080
+      - 8081:8081
+    volumes:
+      # Motion Dconfiguration file
+      #- ./motion.conf:/etc/motion/motion.conf
+      # Cameras configuration file
+      - ./configs:/etc/motion/conf.d
+      # output Store
+      - ./store:/store
+     
