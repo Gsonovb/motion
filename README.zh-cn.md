@@ -92,7 +92,7 @@ services:
 
 ## 贡献
 
-有关对该项目做出贡献的信息，请参见[CONTRIBUTING](CONTRIBUTING.zh-cn.md)。
+有关对该项目做出贡献的信息，请参见[贡献](CONTRIBUTING.zh-cn.md)。
 
 该项目采用了[贡献者契约](http://contributor-covenant.org/)定义的行为准则。
 
