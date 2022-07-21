@@ -2,6 +2,12 @@
 FROM ubuntu:focal
 ARG DEBIAN_FRONTEND=noninteractive
 
+LABEL org.opencontainers.image.title="motion" \
+    org.opencontainers.image.description="motion docker image" \
+    org.opencontainers.image.documentation="https://github.com/Gsonovb/motion" \
+    org.opencontainers.image.source="https://github.com/Gsonovb/motion.git" \
+    org.opencontainers.image.url="https://github.com/Gsonovb/motion" \
+    org.opencontainers.image.vendor="Guanyc"
 
 WORKDIR /store
 
