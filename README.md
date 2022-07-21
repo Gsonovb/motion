@@ -74,9 +74,9 @@ services:
 4. Visit http://localhost:8080/
 
 
-## Contribution
-For information on contributing to the project, see [configuring] (configuring. Zh CN. MD).
-The project adopts [contributor contract]（ http://contributor-covenant.org/ ）Defined code of conduct.
+## CONTRIBUTING
+For information on contributing to the project, see [CONTRIBUTING](CONTRIBUTING.md).
+The project adopts [Contributor Contract](http://contributor-covenant.org/) Defined code of conduct.
 
 ## License
 
